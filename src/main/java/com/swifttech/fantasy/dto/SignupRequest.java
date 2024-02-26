@@ -1,5 +1,6 @@
 package com.swifttech.fantasy.dto;
 
+import com.swifttech.fantasy.generic.BaseAuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUser {
+public class SignupRequest extends BaseAuditEntity<Long> {
 
 
     private String firstName;

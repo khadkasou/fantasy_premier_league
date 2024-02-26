@@ -1,19 +1,23 @@
 package com.swifttech.fantasy.service;
 
-import com.swifttech.fantasy.dto.CreateUser;
+import com.swifttech.fantasy.dto.SignupRequest;
 import com.swifttech.fantasy.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
-    User create(CreateUser createUser);
+    SignupRequest registerUser(SignupRequest signupRequest);
 
-    Optional<User> findById(Long id);
+    Boolean existsByUsername(String username);
 
-    List<User> listAllUser();
+    Boolean existsByEmail(String email);
+    public User findUserByUsername(String username);
+    User findUserDetails();
 
-    User updateUser(Long id, CreateUser createUser);
+    public User findUserByUserNameAndPassword(String userName,String password);
+
+    public User findUserByUserName(String username);
+    public List<User> getAllUser();
 
 }

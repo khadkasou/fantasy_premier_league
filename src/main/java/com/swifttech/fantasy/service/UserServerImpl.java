@@ -1,13 +1,13 @@
 package com.swifttech.fantasy.service;
 
-import com.swifttech.fantasy.dto.CreateUser;
+import com.swifttech.fantasy.dto.SignupRequest;
+import com.swifttech.fantasy.mapper.UserMapper;
 import com.swifttech.fantasy.model.User;
 import com.swifttech.fantasy.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,34 +16,44 @@ public class UserServerImpl implements UserService{
     private final UserRepo userRepo;
 
     @Override
-    public User create(CreateUser createUser) {
+    public SignupRequest registerUser(SignupRequest signupRequest) {
+        User user= UserMapper.INSTANCE.toEntity(signupRequest);
+         this.userRepo.save(user);
+         return UserMapper.INSTANCE.toRegisterDto(user);
+    }
 
-        User user= new User();
-        user.setFirstName(createUser.getFirstName());
-        user.setMiddleName(createUser.getMiddleName());
-        user.setLastName(createUser.getLastName());
-        user.setAddress(createUser.getAddress());
-        user.setDateOfBirth(createUser.getDateOfBirth());
-        user.setPhoneNumber(createUser.getPhoneNumber());
-        user.setEmail(createUser.getEmail());
-        user.setGender(createUser.getGender());
-        user.setUserName(createUser.getUserName());
-        user.setPassword(createUser.getPassword());
+    @Override
+    public Boolean existsByUsername(String username) {
         return null;
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<User> listAllUser() {
+    public Boolean existsByEmail(String email) {
         return null;
     }
 
     @Override
-    public User updateUser(Long id, CreateUser createUser) {
+    public User findUserByUsername(String username) {
+        return null;
+    }
+
+    @Override
+    public User findUserDetails() {
+        return null;
+    }
+
+    @Override
+    public User findUserByUserNameAndPassword(String userName, String password) {
+        return null;
+    }
+
+    @Override
+    public User findUserByUserName(String username) {
+        return null;
+    }
+
+    @Override
+    public List<User> getAllUser() {
         return null;
     }
 }
